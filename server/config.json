@@ -1,0 +1,13 @@
+{
+    "config": {
+        "MODEL_DIR": "./DeepSpeech/",
+        "BEAM_WIDTH": 500,
+        "DEFAULT_SAMPLE_RATE": 16000,
+        "LM_ALPHA": 0.75,
+        "LM_BETA": 1.85,
+        "VAD_AGGRESSIVENESS": 1,
+        "LM_BINARY": "./DeepSpeech/lm.binary",
+        "TRIE": "./DeepSpeech/trie",
+        "MODEL_PATH": "./DeepSpeech/output_graph.pbmm"
+    }
+}
