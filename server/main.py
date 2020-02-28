@@ -62,8 +62,9 @@ def process_transcript(transcript):
             word = ''.join([curr.character for curr in items[word_start:i]])
             result.append(
                 {"word": word, "start-time": start_time, "end-time": end_time})
-            result.append({"word": " ", "start-time": end_time,
-                           "end-time": items[i+1].start_time if i < len(items) else None})
+            if i < len(items) - 1:
+                result.append({"word": " ", "start-time": end_time,
+                               "end-time": items[i+1].start_time})
             word_start = i + 1
     return result
 
