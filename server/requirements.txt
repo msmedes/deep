@@ -6,10 +6,14 @@ deepspeech==0.6.1
 dnspython==1.16.0
 entrypoints==0.3
 eventlet==0.25.1
+ffmpeg-python==0.2.0
 flake8==3.7.9
 Flask==1.1.1
+Flask-Cors==3.0.8
 Flask-SocketIO==4.2.1
+future==0.18.2
 greenlet==0.4.15
+gunicorn==20.0.4
 halo==0.0.28
 itsdangerous==1.1.0
 Jinja2==2.11.1
