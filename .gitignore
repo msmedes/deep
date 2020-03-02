@@ -202,3 +202,5 @@ server/audio
 .vscode/
 
 .DS_Store
+
+server/deepspeech-0.6.1-models

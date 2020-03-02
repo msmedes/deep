@@ -1,12 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import io from 'socket.io-client';
 
-import App from './App/App';
-
-const socket = io.connect('http://localhost:5000', {});
+import App from './components/App/App';
 
 ReactDOM.render(
-  <App socket={socket} />,
+  <App />,
   document.getElementById('root'),
 );

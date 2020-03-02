@@ -17,6 +17,7 @@ UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'wav', 'mp3', 'flac', 'ogg'}
 
 app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 app.config['CONVERTED'] = os.path.join(
     app.config['UPLOAD_FOLDER'], 'converted')
@@ -59,12 +60,12 @@ def process_transcript(transcript):
         if item.character == ' ':
             start_time = items[word_start].start_time
             end_time = item.start_time
-            word = ''.join([curr.character for curr in items[word_start:i]])
+            token = ''.join([curr.character for curr in items[word_start:i]])
             result.append(
-                {"word": word, "start-time": start_time, "end-time": end_time})
+                {"word": token, "startTime": start_time, "endTime": end_time})
             if i < len(items) - 1:
-                result.append({"word": " ", "start-time": end_time,
-                               "end-time": items[i+1].start_time})
+                result.append({"word": " ", "startTime": end_time,
+                               "endTime": items[i+1].start_time})
             word_start = i + 1
     return result
 
@@ -99,9 +100,6 @@ def upload_file():
             file.save(raw_file)
             file_name = normalize_file(file_name)
             transcript = transcribe(file_name)
-            # print(''.join([item.character for item in transcript.items]))
-            # [print(item.character, item.start_time, item.timestep)
-            #  for item in transcription.items]
             transcript = process_transcript(transcript)
             os.remove(raw_file)
             return jsonify(
@@ -114,4 +112,4 @@ config = load_config()
 model = create_model_from_config(config)
 
 if __name__ == "__main__":
-    app.run('localhost', 5000, debug=True, use_reloader=True)
+    app.run('0.0.0.0', 5000, debug=True, use_reloader=True)
