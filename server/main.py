@@ -2,11 +2,11 @@ import os
 import ffmpeg
 import logging
 import deepspeech
-import numpy as np
+# import numpy as np
 import scipy.io.wavfile as wav
 import json
 from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from werkzeug.utils import secure_filename
 from typing import Dict, Union
 logging.basicConfig(level=25)
@@ -15,6 +15,7 @@ Config = Dict[str, Union[str, int, float]]
 
 UPLOAD_FOLDER = './uploads'
 ALLOWED_EXTENSIONS = {'wav', 'mp3', 'flac', 'ogg'}
+
 
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
@@ -85,8 +86,8 @@ def allowed_file(filename):
 
 
 @app.route('/upload', methods=['POST'])
+# @cross_origin
 def upload_file():
-    print(request.files)
     if len(request.files) == 0:
         return jsonify(
             error="No file in request"
@@ -112,4 +113,5 @@ config = load_config()
 model = create_model_from_config(config)
 
 if __name__ == "__main__":
-    app.run('0.0.0.0', 5000, debug=True, use_reloader=True)
+    app.run('0.0.0.0', 5000, debug=True,
+            use_reloader=True)
