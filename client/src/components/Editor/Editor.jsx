@@ -9,7 +9,7 @@ import { withHistory } from 'slate-history';
 
 import isHotkey from 'is-hotkey';
 
-import modifyAudioGraph from '../../utils/modifyAudioGraph';
+import generateAudioTransport from '../../utils/generateAudioTransport'
 
 
 const CustomEditor = {
@@ -36,12 +36,13 @@ const HOTKEYS = {
   'mod+r': CustomEditor.toggleRemoved,
 };
 
-const EditorWrapper = ({ initialValue }) => {
+const EditorWrapper = ({ initialValue, setAudioSchedule }) => {
   const [value, setValue] = useState(initialValue);
   const editor = useMemo(() => withHistory(withReact(createEditor())), []);
 
   useEffect(() => {
-    modifyAudioGraph(value)
+    const schedule = generateAudioTransport(value)
+    setAudioSchedule(schedule)
   }, [value])
 
   const renderElement = useCallback(({ attributes, children, element }) => {
@@ -58,11 +59,6 @@ const EditorWrapper = ({ initialValue }) => {
         return <p {...attributes}>{children}</p>
     }
   }, [])
-
-  // useEffect(() => {
-  //   console.log('useEffect called, modifying audio graph')
-  //   console.log(value)
-  // }, [value])
 
   const renderLeaf = useCallback(({ attributes, children, leaf }) => {
     if (leaf.removed) {

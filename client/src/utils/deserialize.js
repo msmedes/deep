@@ -1,3 +1,6 @@
+// Serializer for converting the JSON response from the transcription service
+// to a format slate can use.
+
 const jsonToSlate = ({ body }) => {
   console.log(body);
   const spans = body.map((token) => (
@@ -12,6 +15,7 @@ const jsonToSlate = ({ body }) => {
     }
   ));
   return [{ type: 'paragraph', children: [...spans] }];
+
 };
 
 export default jsonToSlate;
