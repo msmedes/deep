@@ -19,10 +19,6 @@ const createSource = ({ audioData, audioContext }) => {
   fileReader.onloadend = function () {
     audioContext.decodeAudioData(fileReader.result).then(function (decodedData) {
       source.buffer = decodedData
-      // console.log('index', index, 'schedule', schedule)
-      // // offset should actually be calculated by duration since endtime doens't seem reliable
-      // console.log(schedule.lastEndTime + currentTime, schedule.startTime, schedule.endTime - schedule.startTime)
-      // source.start(schedule.lastEndTime + currentTime, schedule.startTime, !last && schedule.endTime - schedule.startTime)
     })
   }
   fileReader.readAsArrayBuffer(audioData)
@@ -65,5 +61,18 @@ const calcCurves = () => {
   // // console.log(fadeOut)
 }
 
+const generateTimeouts = (schedules, player, setSeekTime) => {
+  const timeouts = [];
+  let lastEndTime = 0;
+  for (const schedule of schedules) {
+    console.log('schedule', schedules)
+    console.log('lastEndTime', lastEndTime)
+    const timeout = setTimeout(() => { setSeekTime(schedule.startTime); console.log(player.currentTime) }, lastEndTime)
+    lastEndTime = schedule.endTime - schedule.startTime
+    timeouts.push(timeout)
+  }
+  console.log('timeouts', timeouts)
+  return timeouts
+}
 
-export { calcBufferTransport, createSourcesFromSchedules }
+export { calcBufferTransport, createSourcesFromSchedules, generateTimeouts }

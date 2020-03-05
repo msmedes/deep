@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Dashboard } from '@uppy/react'
 import Uppy from '@uppy/core'
@@ -9,7 +9,7 @@ import xhr from '@uppy/xhr-upload'
 import EditorWrapper from '../Editor/Editor';
 
 import jsonToSlate from '../../utils/deserialize';
-import { calcBufferTransport, createSourcesFromSchedules } from '../../utils/audioUtils'
+import { calcBufferTransport, createSourcesFromSchedules, generateTimeouts } from '../../utils/audioUtils'
 import { fadeIn, fadeOut } from '../../utils/fadeCurves';
 
 
@@ -19,36 +19,62 @@ const initialState = {
   transcript: {},
   audioData: null,
   isPlaying: false,
-  buffers: []
+  buffers: [],
+  timeOuts: [],
 }
 
 
 const App = () => {
+  const player = document.getElementById("audioPlayer")
   const [state, setState] = useState(initialState)
   const [audioSchedule, setAudioSchedule] = useState([])
+  const [seekTime, setSeekTime] = useState(0)
+
+  useEffect(() => {
+    if (player) {
+
+      player.currentTime = seekTime
+    }
+  }, [seekTime])
+
+
 
   const handlePlayAudio = () => {
-    const fadeDuration = 0.1
-    const currentTime = state.audioContext.currentTime
-    console.log(currentTime)
-    let bufferNodes = createSourcesFromSchedules(audioSchedule, state)
-    bufferNodes = calcBufferTransport(bufferNodes, currentTime)
-    console.log('bufferNodes', bufferNodes)
-    for (const node of bufferNodes) {
-      const { startTime, offset, duration } = node.startParameters
-      node.gainNode.gain.setValueCurveAtTime(fadeIn, startTime + 0.25, fadeDuration)
-      node.gainNode.gain.setValueCurveAtTime(fadeOut, startTime + duration + 0.25, fadeDuration)
-      node.source.start(startTime, offset, duration + fadeDuration)
-
+    // const timeOuts = generateTimeouts(audioSchedule, setSeekTime)
+    const timeOuts = [];
+    let lastEndTime = 0;
+    for (const schedule of audioSchedule) {
+      console.log('schedule', schedule)
+      console.log('lastEndTime', lastEndTime)
+      const setSeekTimeWrapper = () => { setSeekTime(schedule.startTime) }
+      const timeout = setTimeout(setSeekTimeWrapper, lastEndTime * 1000)
+      lastEndTime = schedule.endTime - schedule.startTime + lastEndTime
+      timeOuts.push(timeout)
     }
-    setState({ ...state, isPlaying: true, buffers: bufferNodes })
+    player.play()
+    // const fadeInDuration = 0.1
+    // const fadeOutDuration = 0.05
+    // const currentTime = state.audioContext.currentTime
+    // let bufferNodes = createSourcesFromSchedules(audioSchedule, state)
+    // bufferNodes = calcBufferTransport(bufferNodes, currentTime)
+    // console.log('bufferNodes', bufferNodes)
+    // for (const node of bufferNodes) {
+    //   const { startTime, offset, duration } = node.startParameters
+    //   const gainStartOffset = startTime === 0 ? startTime : startTime + 0.4
+    //   node.gainNode.gain.setValueCurveAtTime(fadeIn, gainStartOffset, fadeInDuration)
+    //   node.gainNode.gain.setValueCurveAtTime(fadeOut, startTime + duration, fadeOutDuration)
+    //   node.source.start(startTime, offset, duration + fadeOutDuration)
+
+    // }
+    setState({ ...state, isPlaying: true, timeOuts })
   }
 
-  // const stopAudio = () => {
-  //   for (const buffer of state.buffers) {
-  //     buffer.stop(0)
-  //   }
-  // }
+  const stopAudio = () => {
+    for (const timeout of state.timeOuts) {
+      clearTimeout(timeout)
+    }
+    player.pause()
+  }
 
   const uppy = Uppy({
     id: 'uppy1',
@@ -63,12 +89,20 @@ const App = () => {
 
   uppy.on('upload-success', (file, response) => {
     const deserialized = jsonToSlate(response)
-    setState({ ...state, audioLoaded: true, transcript: deserialized, audioData: file.data })
     uppy.close()
+    const url = URL.createObjectURL(file.data)
+    setState({ ...state, audioLoaded: true, transcript: deserialized, audioData: file.data, audioSource: url })
   })
 
   return (
     <>
+      <audio
+        controls
+        id="audioPlayer"
+        autoPlay={false}>
+        {state.audioSource && <source src={state.audioSource}>
+        </source>}
+      </audio>
       {!state.audioLoaded && <Dashboard uppy={uppy} {...{ inline: true, showProgressDetails: true, width: 300, height: 200 }} />}
       <button onClick={handlePlayAudio}>Play</button>
       {

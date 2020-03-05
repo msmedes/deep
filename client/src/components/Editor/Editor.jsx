@@ -62,7 +62,7 @@ const EditorWrapper = ({ initialValue, setAudioSchedule }) => {
 
   const renderLeaf = useCallback(({ attributes, children, leaf }) => {
     if (leaf.removed) {
-      return <span style={{ background: 'hsl(0, 100%, 67%)', color: 'hsl(0, 0%, 96%)' }} {...attributes}>{children}</span>
+      return <span style={{ textDecorationLine: 'line-through', color: 'hsl(0, 100%, 75%)' }} {...attributes}>{children}</span>
     }
     return <span {...attributes}>{children}</span>
   })

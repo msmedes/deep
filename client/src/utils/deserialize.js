@@ -3,7 +3,7 @@
 
 const jsonToSlate = ({ body }) => {
   console.log(body);
-  const spans = body.map((token) => (
+  const spans = body.map((token, index) => (
     {
       type: 'span',
       text: token.word,
@@ -11,7 +11,7 @@ const jsonToSlate = ({ body }) => {
       dragged: false,
       endTime: token.endTime,
       removed: false,
-
+      index
     }
   ));
   return [{ type: 'paragraph', children: [...spans] }];
