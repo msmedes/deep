@@ -1,0 +1,244 @@
+{
+  "body": [
+    {
+      "endTime": 1.2400000095367432,
+      "startTime": 0.0,
+      "word": "forever"
+    },
+    {
+      "endTime": 1.5,
+      "startTime": 1.2400000095367432,
+      "word": " "
+    },
+    {
+      "endTime": 1.5999999046325684,
+      "startTime": 1.5,
+      "word": "on"
+    },
+    {
+      "endTime": 1.6200000047683716,
+      "startTime": 1.5999999046325684,
+      "word": " "
+    },
+    {
+      "endTime": 1.71999990940094,
+      "startTime": 1.6200000047683716,
+      "word": "the"
+    },
+    {
+      "endTime": 1.7400000095367432,
+      "startTime": 1.71999990940094,
+      "word": " "
+    },
+    {
+      "endTime": 2.0,
+      "startTime": 1.7400000095367432,
+      "word": "backs"
+    },
+    {
+      "endTime": 2.0199999809265137,
+      "startTime": 2.0,
+      "word": " "
+    },
+    {
+      "endTime": 2.1399998664855957,
+      "startTime": 2.0199999809265137,
+      "word": "of"
+    },
+    {
+      "endTime": 2.1399998664855957,
+      "startTime": 2.1399998664855957,
+      "word": " "
+    },
+    {
+      "endTime": 2.5399999618530273,
+      "startTime": 2.1399998664855957,
+      "word": "everyone"
+    },
+    {
+      "endTime": 2.6399998664855957,
+      "startTime": 2.5399999618530273,
+      "word": " "
+    },
+    {
+      "endTime": 3.2799999713897705,
+      "startTime": 2.6399998664855957,
+      "word": "else"
+    },
+    {
+      "endTime": 3.359999895095825,
+      "startTime": 3.2799999713897705,
+      "word": " "
+    },
+    {
+      "endTime": 3.740000009536743,
+      "startTime": 3.359999895095825,
+      "word": "but"
+    },
+    {
+      "endTime": 3.859999895095825,
+      "startTime": 3.740000009536743,
+      "word": " "
+    },
+    {
+      "endTime": 4.659999847412109,
+      "startTime": 3.859999895095825,
+      "word": "june"
+    },
+    {
+      "endTime": 4.699999809265137,
+      "startTime": 4.659999847412109,
+      "word": " "
+    },
+    {
+      "endTime": 4.859999656677246,
+      "startTime": 4.699999809265137,
+      "word": "was"
+    },
+    {
+      "endTime": 4.880000114440918,
+      "startTime": 4.859999656677246,
+      "word": " "
+    },
+    {
+      "endTime": 5.480000019073486,
+      "startTime": 4.880000114440918,
+      "word": "instrumental"
+    },
+    {
+      "endTime": 5.5,
+      "startTime": 5.480000019073486,
+      "word": " "
+    },
+    {
+      "endTime": 5.619999885559082,
+      "startTime": 5.5,
+      "word": "in"
+    },
+    {
+      "endTime": 5.639999866485596,
+      "startTime": 5.619999885559082,
+      "word": " "
+    },
+    {
+      "endTime": 5.859999656677246,
+      "startTime": 5.639999866485596,
+      "word": "trying"
+    },
+    {
+      "endTime": 5.87999963760376,
+      "startTime": 5.859999656677246,
+      "word": " "
+    },
+    {
+      "endTime": 6.0,
+      "startTime": 5.87999963760376,
+      "word": "to"
+    },
+    {
+      "endTime": 6.0,
+      "startTime": 6.0,
+      "word": " "
+    },
+    {
+      "endTime": 6.359999656677246,
+      "startTime": 6.0,
+      "word": "work"
+    },
+    {
+      "endTime": 6.37999963760376,
+      "startTime": 6.359999656677246,
+      "word": " "
+    },
+    {
+      "endTime": 6.639999866485596,
+      "startTime": 6.37999963760376,
+      "word": "through"
+    },
+    {
+      "endTime": 6.679999828338623,
+      "startTime": 6.639999866485596,
+      "word": " "
+    },
+    {
+      "endTime": 6.839999675750732,
+      "startTime": 6.679999828338623,
+      "word": "the"
+    },
+    {
+      "endTime": 6.839999675750732,
+      "startTime": 6.839999675750732,
+      "word": " "
+    },
+    {
+      "endTime": 8.279999732971191,
+      "startTime": 6.839999675750732,
+      "word": "system"
+    },
+    {
+      "endTime": 8.34000015258789,
+      "startTime": 8.279999732971191,
+      "word": " "
+    },
+    {
+      "endTime": 8.479999542236328,
+      "startTime": 8.34000015258789,
+      "word": "by"
+    },
+    {
+      "endTime": 8.479999542236328,
+      "startTime": 8.479999542236328,
+      "word": " "
+    },
+    {
+      "endTime": 8.819999694824219,
+      "startTime": 8.479999542236328,
+      "word": "giving"
+    },
+    {
+      "endTime": 8.859999656677246,
+      "startTime": 8.819999694824219,
+      "word": " "
+    },
+    {
+      "endTime": 9.0,
+      "startTime": 8.859999656677246,
+      "word": "some"
+    },
+    {
+      "endTime": 9.019999504089355,
+      "startTime": 9.0,
+      "word": " "
+    },
+    {
+      "endTime": 9.300000190734863,
+      "startTime": 9.019999504089355,
+      "word": "money"
+    },
+    {
+      "endTime": 9.300000190734863,
+      "startTime": 9.300000190734863,
+      "word": " "
+    },
+    {
+      "endTime": 9.460000038146973,
+      "startTime": 9.300000190734863,
+      "word": "for"
+    },
+    {
+      "endTime": 9.460000038146973,
+      "startTime": 9.460000038146973,
+      "word": " "
+    },
+    {
+      "endTime": 9.59999942779541,
+      "startTime": 9.460000038146973,
+      "word": "the"
+    },
+    {
+      "endTime": 9.639999389648438,
+      "startTime": 9.59999942779541,
+      "word": " "
+    }
+  ]
+}
