@@ -10,7 +10,7 @@ import { withHistory } from 'slate-history';
 import isHotkey from 'is-hotkey';
 
 import generateAudioTransport from '../../utils/generateAudioTransport'
-import { StateContext, DispatchContext } from '../../context'
+import { StateContext, DispatchContext } from '../../context/context'
 
 const CustomEditor = {
   isTokenRemoved(editor) {
@@ -46,7 +46,6 @@ const EditorWrapper = ({ initialValue }) => {
 
   useEffect(() => {
     const schedule = generateAudioTransport(value)
-    console.log("editor schedule", schedule)
     dispatch({ type: 'SET_AUDIO_SCHEDULE', audioSchedule: schedule })
   }, [value])
 
@@ -66,11 +65,12 @@ const EditorWrapper = ({ initialValue }) => {
     }
   }, [])
 
-  const handleTransportSelect = () => {
+  const handleTransportSelect = (e) => {
+    console.log('e', e)
     console.log('editor selection', editor.selection)
     let selectedNode
-    for (const [node] of Editor.nodes(editor, { at: editor.selection })) {
-      // console.log('selected node', node)
+    for (const [node] of Editor.nodes(editor, { at: editor.selection.focus })) {
+      console.log('loop', node)
       if (node.type === 'span' && !node.isRemoved) {
         selectedNode = node
       }
@@ -83,7 +83,7 @@ const EditorWrapper = ({ initialValue }) => {
 
   const renderLeaf = useCallback(({ attributes, children, leaf }) => {
     if (leaf.removed) {
-      return <span style={{ textDecorationLine: 'line-through', color: 'hsl(0, 100%, 75%)' }} {...attributes}>{children}</span>
+      return <span style={{ textDecorationLine: 'line-through', color: 'hsl(0, 80%, 63%)' }} {...attributes}>{children}</span>
     }
     if (leaf.startTime.toFixed(2) <= state.playerTime && leaf.endTime.toFixed(2) > state.playerTime) {
       return <span style={{ color: 'hsl(218, 100%, 52%)' }} {...attributes}>{children}</span>
@@ -97,7 +97,7 @@ const EditorWrapper = ({ initialValue }) => {
         placeholder="Enter some text"
         autoFocus
         spellCheck
-        onMouseDown={handleTransportSelect}
+        onPointerDown={e => handleTransportSelect(e)}
         renderElement={renderElement}
         renderLeaf={renderLeaf}
         onKeyDown={event => {

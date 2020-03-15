@@ -1,8 +1,8 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
-import { StateContext, DispatchContext } from '../../context'
+import { StateContext, DispatchContext } from '../../context/context'
 
 
-const SeekBar = ({ player }) => {
+const SeekBar = () => {
   const myRef = useRef(null)
   const [percentage, setPercentage] = useState(0)
   const { playerTime, fileDuration, isPlaying, seekTime } = useContext(StateContext)
@@ -32,9 +32,9 @@ const SeekBar = ({ player }) => {
     <div
       ref={myRef}
       onClick={handleSeek}
-      style={{ width: "1000px", height: "20px", background: 'hsl(218, 100%, 80%)' }}
+      style={{ width: "1000px", height: "20px", background: 'hsl(218, 50%, 80%)', marginTop: '.85rem', borderRadius: "1px" }}
     >
-      <div style={{ background: 'hsl(218, 100%, 70%)', width: `${percentage}%`, height: "20px", transition: "width .25s linear" }}></div>
+      <div style={{ background: 'hsl(218, 100%, 70%)', width: `${percentage}%`, height: "20px" }}></div>
     </div >
   )
 }
