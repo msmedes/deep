@@ -1,6 +1,9 @@
 import React, { useRef, useState, useEffect, useContext } from 'react'
 import { StateContext, DispatchContext } from '../../context/context'
 
+import { SeekBarBackground, SeekBarProgress, SeekBarContainer, TimeDisplay } from '../../styles/SeekBar'
+
+import formatTime from '../../utils/formatTime'
 
 const SeekBar = () => {
   const myRef = useRef(null)
@@ -29,13 +32,13 @@ const SeekBar = () => {
   }, [seekTime])
 
   return (
-    <div
-      ref={myRef}
-      onClick={handleSeek}
-      style={{ width: "1000px", height: "20px", background: 'hsl(218, 50%, 80%)', marginTop: '.85rem', borderRadius: "1px" }}
-    >
-      <div style={{ background: 'hsl(218, 100%, 70%)', width: `${percentage}%`, height: "20px" }}></div>
-    </div >
+    <SeekBarContainer>
+      <TimeDisplay>{formatTime(playerTime)}</TimeDisplay>
+      <SeekBarBackground ref={myRef} onClick={handleSeek}>
+        <SeekBarProgress percentage={percentage}></SeekBarProgress>
+      </SeekBarBackground>
+      <TimeDisplay>{formatTime(fileDuration - playerTime)}</TimeDisplay>
+    </SeekBarContainer>
   )
 }
 

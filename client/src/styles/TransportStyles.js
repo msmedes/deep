@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 
 const TransportStyles = styled.div`
-display: block;
+display: flex;
+justify-content: center;
 margin: 1rem;
 `
 

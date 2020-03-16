@@ -13,7 +13,7 @@ import TransportControls from '../TransportControls/TransportControls'
 
 import jsonToSlate from '../../utils/deserialize';
 import initialValue from '../../utils/initialValue'
-import formatTime from '../../utils/formatTime'
+
 
 import test10 from '../../test10.wav'
 
@@ -156,12 +156,7 @@ const App = () => {
         </audio>
         {/*!audioLoaded && <Dashboard uppy={uppy} {...{ inline: true, showProgressDetails: true, width: 300, height: 200 }} />*/}
         <TransportControls handleReturnToStart={handleReturnToStart} handlePlayPause={handlePlayPause} handleMoveToEnd={handleMoveToEnd} isPlaying={isPlaying} />
-        <div style={{ display: 'flex' }}>
-          <p style={{ fontSize: '.75rem', margin: '1rem' }}>{formatTime(playerTime)}</p>
-          {<SeekBar player={player} />}
-          <p style={{ fontSize: '.75rem', margin: '1rem' }}>-{formatTime(fileDuration - playerTime)}</p>
-        </div>
-
+        <SeekBar player={player} />
         {/*<p>player: {player.currentTime}</p>*/}
         {
           audioLoaded &&

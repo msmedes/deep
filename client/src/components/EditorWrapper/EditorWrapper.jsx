@@ -92,24 +92,26 @@ const EditorWrapper = ({ initialValue }) => {
   })
 
   return (
-    <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
-      <Editable
-        placeholder="Enter some text"
-        autoFocus
-        spellCheck
-        onPointerDown={e => handleTransportSelect(e)}
-        renderElement={renderElement}
-        renderLeaf={renderLeaf}
-        onKeyDown={event => {
-          for (const hotkey in HOTKEYS) {
-            if (isHotkey(hotkey, event)) {
-              event.preventDefault();
-              HOTKEYS[hotkey](editor)
+    <div style={{ display: "flex", justifyContent: "center" }}>
+      <Slate editor={editor} value={value} onChange={(value) => setValue(value)}>
+        <Editable
+          placeholder="Enter some text"
+          autoFocus
+          spellCheck
+          onPointerDown={e => handleTransportSelect(e)}
+          renderElement={renderElement}
+          renderLeaf={renderLeaf}
+          onKeyDown={event => {
+            for (const hotkey in HOTKEYS) {
+              if (isHotkey(hotkey, event)) {
+                event.preventDefault();
+                HOTKEYS[hotkey](editor)
+              }
             }
-          }
-        }}
-      />
-    </Slate>
+          }}
+        />
+      </Slate>
+    </div>
   )
 };
 
