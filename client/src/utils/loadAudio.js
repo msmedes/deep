@@ -1,3 +1,5 @@
+// More deprecated bullsh
+
 const loadAudio = (audioContext) => {
 
   let buffer;

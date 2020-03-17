@@ -1,3 +1,5 @@
+// Formats the timestamps for the seek bar
+
 export default function (time) {
   const hours = ~~(time / 3600)
   const minutes = ~~(time / 60)

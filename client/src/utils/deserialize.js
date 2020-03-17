@@ -1,5 +1,5 @@
 // Serializer for converting the JSON response from the transcription service
-// to a format slate can use.
+// to a format slatejs can use.
 
 const jsonToSlate = ({ body }) => {
   console.log(body);

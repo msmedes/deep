@@ -1,3 +1,6 @@
+// I generated some Equal Power CrossFade curves from when I was using 
+// gain nodes and the WebAudio API
+
 const fadeOut = [0.9998766324816606,
   0.9995065603657316,
   0.99888987496197,

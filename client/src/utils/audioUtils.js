@@ -1,3 +1,6 @@
+// This whole file is deprecated, it is a relic from when I was 
+// using the WebAudio API
+
 import { fadeIn, fadeOut } from './fadeCurves';
 
 const createSourcesFromSchedules = (schedules, state) => {

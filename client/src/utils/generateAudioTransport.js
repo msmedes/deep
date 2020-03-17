@@ -1,3 +1,6 @@
+// This generates the timeouts and all that good stuff based on the
+// audio schedule, the seek time, and the player time.
+
 const validStartTime = (time) => {
   return time || time === 0
 }
