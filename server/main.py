@@ -7,11 +7,9 @@ import ffmpeg
 
 # import numpy as np
 import scipy.io.wavfile as wav
-import json
 from flask import Flask, request, jsonify
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from werkzeug.utils import secure_filename
-from typing import Dict, Union
 
 logging.basicConfig(level=25)
 
