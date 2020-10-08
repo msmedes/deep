@@ -1,3 +1,24 @@
+### Run the server
+First, create a venv (I used virtualenv but it doesn't matter).  This was written in a 3.8.5 env.
+Also make sure you have ffmpeg installed on your machine.  I used brew (`brew ffmpeg`)
+```bash
+cd server
+pip install -r requirements.txt
+```
+
+Right now the config object assumes the deepspeech model files are in `server/deepspeech-0.8.2-models` so either create a file with that name or create your own.  Then, in that folder run 
+```bash
+curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.8.2/deepspeech-0.8.2-models.pbmm
+curl -LO https://github.com/mozilla/DeepSpeech/releases/download/v0.8.2/deepspeech-0.8.2-models.scorer
+```
+to download the model files.
+Next start the server with
+```bash
+python main.py
+```
+and the server should spin up on `0.0.0.0:5000`.  Right now there is only one route defined, `/upload`, which takes a `wav` file from the client.  I think that functionality may be disabled client side right now but it's in there somewhere. 
+
+
 ### Run the client
 ```bash
 cd client
@@ -12,7 +33,9 @@ You can click in the timelime to move around.  You can double click a word to mo
 
 
 ### Upcoming features
-There will probably be more because I'm currently quarantined.  Some examples:
+There will probably be more because I'm currently quarantined. (UPDATE: lol I thought I was going to be able to get some work done in the epicenter of a global pandemic). 
+
+Some examples:
 - Users (wow)
 - Persistence to a db
 - Uploading (this actually works but I removed it to tighten the dev cycle)

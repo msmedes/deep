@@ -204,6 +204,6 @@ server/audio
 
 .DS_Store
 
-server/deepspeech-0.6.1-models
+server/deepspeech-0.8.2-models/
 
 *.wav
