@@ -13,7 +13,7 @@ Flask-Cors==3.0.8
 greenlet==0.4.15
 gunicorn==20.0.4
 itsdangerous==1.1.0
-Jinja2==2.11.1
+Jinja2==2.11.3
 log-symbols==0.0.14
 MarkupSafe==1.1.1
 mccabe==0.6.1
